@@ -1,0 +1,41 @@
+<odoo>
+    <record id="view_customer_inventory_tree" model="ir.ui.view">
+        <field name="name">customer.inventory.tree</field>
+        <field name="model">customer.inventory</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Inventory">
+                <field name="product_id"/>
+                <field name="customer_id"/>
+                <field name="current_stock"/>
+                <field name="min_stock_level"/>
+                <field name="last_updated"/>
+                <field name="visit_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_customer_inventory_form" model="ir.ui.view">
+        <field name="name">customer.inventory.form</field>
+        <field name="model">customer.inventory</field>
+        <field name="arch" type="xml">
+            <form string="Customer Inventory">
+                <sheet>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="customer_id"/>
+                        <field name="current_stock"/>
+                        <field name="min_stock_level"/>
+                        <field name="last_updated"/>
+                        <field name="visit_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_customer_inventory" model="ir.actions.act_window">
+        <field name="name">Customer Inventory</field>
+        <field name="res_model">customer.inventory</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

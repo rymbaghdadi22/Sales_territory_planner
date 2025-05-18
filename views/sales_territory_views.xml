@@ -1,0 +1,39 @@
+<odoo>
+    <record id="view_sales_territory_tree" model="ir.ui.view">
+        <field name="name">sales.territory.tree</field>
+        <field name="model">sales.territory</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Territories">
+                <field name="name"/>
+                <field name="zone"/>
+                <field name="sales_person_id"/>
+                <field name="visit_day"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sales_territory_form" model="ir.ui.view">
+        <field name="name">sales.territory.form</field>
+        <field name="model">sales.territory</field>
+        <field name="arch" type="xml">
+            <form string="Sales Territory">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="zone"/>
+                        <field name="sales_person_id"/>
+                        <field name="visit_day"/>
+                        <field name="is_active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_sales_territory" model="ir.actions.act_window">
+    <field name="name">Sales Territories</field>
+    <field name="res_model">sales.territory</field>
+    <field name="view_mode">tree,form</field>
+</record>
+</odoo>

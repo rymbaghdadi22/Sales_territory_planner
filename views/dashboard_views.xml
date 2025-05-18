@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sales_territory_dashboard_action" model="ir.actions.client">
+        <field name="name">Sales Territory Dashboard</field>
+        <field name="tag">sales_territory_dashboard_tag</field>
+    </record>
+    
+    <menuitem name="Dashboard" id="menu_sales_territory_dashboard" 
+              sequence="1" action="sales_territory_dashboard_action" 
+              parent="menu_sales_territory_root"/>
+</odoo>

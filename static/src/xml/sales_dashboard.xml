@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="sales_territory_planner.Dashboard">
+        <div class="o_sales_territory_dashboard">
+            <div class="o_dashboard_header">
+                <h1>Sales Territory Dashboard</h1>
+                <div class="o_dashboard_buttons">
+                    <button class="btn btn-primary" t-on-click="fetchDashboardData">
+                        <i class="fa fa-refresh"/> Refresh
+                    </button>
+                </div>
+            </div>
+            
+            <div t-if="state.loading" class="o_dashboard_loading">
+                <i class="fa fa-spinner fa-spin"/> Loading dashboard data...
+            </div>
+            
+            <div t-else="" class="o_dashboard_content">
+                <div class="o_dashboard_section">
+                    <div class="o_dashboard_section_header">
+                        <h2>Territory Overview</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="o_dashboard_card">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Territory</th>
+                                            <th>Salesperson</th>
+                                            <th>Zone</th>
+                                            <th>Visit Day</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="state.territories" t-as="territory" t-key="territory.id">
+                                            <td><t t-esc="territory.name"/></td>
+                                            <td><t t-esc="territory.sales_person_id[1]"/></td>
+                                            <td><t t-esc="territory.zone"/></td>
+                                            <td><t t-esc="territory.visit_day"/></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-link" t-on-click="() => this.openTerritory(territory.id)">
+                                                    <i class="fa fa-external-link"/> View
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="o_dashboard_card">
+                                <div class="o_dashboard_kpi_container">
+                                    <div class="o_dashboard_kpi">
+                                        <div class="o_dashboard_kpi_value">
+                                            <t t-esc="state.territories.length"/>
+                                        </div>
+                                        <div class="o_dashboard_kpi_label">
+                                            Total Territories
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="o_dashboard_section">
+                    <div class="o_dashboard_section_header">
+                        <h2>Recent Visits</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="o_dashboard_card">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Reference</th>
+                                            <th>Customer</th>
+                                            <th>Date</th>
+                                            <th>Check-in Time</th>
+                                            <th>Salesperson</th>
+                                            <th>Feedback</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="state.visits" t-as="visit" t-key="visit.id">
+                                            <td><t t-esc="visit.name"/></td>
+                                            <td><t t-esc="visit.customer_id[1]"/></td>
+                                            <td><t t-esc="visit.visit_date"/></td>
+                                            <td><t t-esc="visit.check_in_time"/></td>
+                                            <td><t t-esc="visit.sales_person_id[1]"/></td>
+                                            <td><t t-esc="visit.feedback"/></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-link" t-on-click="() => this.openVisit(visit.id)">
+                                                    <i class="fa fa-external-link"/> View
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="o_dashboard_section">
+                    <div class="o_dashboard_section_header">
+                        <h2>Inventory Status</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="o_dashboard_card">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer</th>
+                                            <th>Product</th>
+                                            <th>Current Stock</th>
+                                            <th>Min Stock Level</th>
+                                            <th>Last Updated</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="state.inventory" t-as="item" t-key="item.id">
+                                            <td><t t-esc="item.customer_id[1]"/></td>
+                                            <td><t t-esc="item.product_id[1]"/></td>
+                                            <td><t t-esc="item.current_stock"/></td>
+                                            <td><t t-esc="item.min_stock_level"/></td>
+                                            <td><t t-esc="item.last_updated"/></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-link" t-on-click="() => this.openInventory(item.id)">
+                                                    <i class="fa fa-external-link"/> View
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="o_dashboard_card">
+                                <div class="o_dashboard_kpi_container">
+                                    <div class="o_dashboard_kpi">
+                                        <div class="o_dashboard_kpi_value">
+                                            <t t-esc="state.inventory.length"/>
+                                        </div>
+                                        <div class="o_dashboard_kpi_label">
+                                            Total Inventory Items
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

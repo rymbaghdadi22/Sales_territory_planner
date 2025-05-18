@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sales_territory,sales.territory,model_sales_territory,base.group_user,1,1,1,1
+access_sales_customer_visit,sales.customer.visit,model_sales_customer_visit,base.group_user,1,1,1,1
+access_customer_inventory,customer.inventory,model_customer_inventory,base.group_user,1,1,1,1
